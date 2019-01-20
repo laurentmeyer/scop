@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jpriou <jpriou@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/18 11:39:09 by jpriou            #+#    #+#              #
-#    Updated: 2019/01/18 11:56:46 by jpriou           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 DIR_ALLOC = $(SOURCEDIR)alloc/
 DIR_DISPLAY = $(SOURCEDIR)display/
 # DIR_PARSING = $(SOURCEDIR)parsing/
@@ -23,8 +11,9 @@ FILES_ALLOC = exit.c			\
 			ram.c				\
 
 FILES_DISPLAY = callbacks.c		\
-# 			display.c \
-# 			hooks.c \
+				init.c			\
+				loop.c			\
+				# glad.c			\
 
 # FILES_PARSING = \
 # 			parsing.c \

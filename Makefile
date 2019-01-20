@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jpriou <jpriou@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/18 11:39:09 by jpriou            #+#    #+#              #
-#    Updated: 2019/01/18 12:04:12 by jpriou           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 _RED=$(shell tput setaf 1 2> /dev/null || echo "")
 _GREEN=$(shell tput setaf 2 2> /dev/null || echo "")
 _YELLOW=$(shell tput setaf 3 2> /dev/null || echo "")
@@ -20,7 +8,7 @@ _WHITE=$(shell tput setaf 7 2> /dev/null || echo "")
 _END=$(shell tput sgr0 2> /dev/null || echo "")
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = scop
 BUILDDIR = builds/
 SOURCEDIR = srcs/
@@ -32,12 +20,17 @@ include files.mk
 
 
 # LIBFT = 		./libft/
+GLFW = 		./libs/GLFW
+GLEW = 		./libs/GLEW
 
 CCHEADERS = -I./$(HEADERDIR) \
+			-I$(GLFW)/include/ \
+			-I$(GLEW)/include/ \
 			# -I$(LIBFT)/libft/includes \
 			# -I$(LIBFT)/ft_printf/includes \
 
-CCLIBS = -lglfw3
+CCLIBS =	-L$(GLFW)/lib -lglfw		\
+			-L$(GLEW)/lib -lGLEW		\
 		# -L$(LIBFT) -lft \
 
 CCFRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
