@@ -3,14 +3,23 @@
 
 # include <libc.h>
 # include <math.h>
-
-typedef struct		s_ram t_ram;
-
+# include "ram.h"
 # include "display.h"
 
-struct				s_ram
-{
-	t_display		display;
-};
+# define WIN_H		480
+# define WIN_W		640
+# define WIN_NAME	"scop"
+
+
+void	key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void	error_callback(int error, const char* description);
+void	loop(t_ram *ram);
+void 	init_program(t_ram *ram);
+void 	link_program(t_ram *ram);
+void	init_buffers(t_ram *ram);
+void 	init_shaders(t_ram *ram);
+void	init_window(t_ram *ram);
+void 	init_context(t_ram *ram);
+void	init_callbacks(t_ram *ram);
 
 #endif

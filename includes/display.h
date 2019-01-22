@@ -8,28 +8,17 @@ typedef struct		s_display
 {
 	GLFWwindow *window;
 	GLfloat vertices[9];
-	int viewport_x;
-	int viewport_y;
+	int	width;
+	int	height;
+	float	znear;
+	float	zfar;
 	GLuint vertex_buffer;
 	GLuint vertex_shader;
 	GLuint fragment_shader;
 	GLuint program;
 	GLuint vbo;
 	GLuint vao;
-	// GLint mvp_location;
-	// GLint vpos_location;
-	// GLint vcol_location;
+	GLint pMatID;
 } 					t_display;
-
-# include "scop.h"
-# define WIN_H		480
-# define WIN_W		640
-# define WIN_NAME	"scop"
-
-
-void	key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-void	error_callback(int error, const char* description);
-void	set_buffers_shaders_and_program(t_ram *ram);
-void	loop(t_ram *ram);
 
 #endif

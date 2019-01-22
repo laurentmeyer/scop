@@ -1,5 +1,6 @@
 DIR_ALLOC = $(SOURCEDIR)alloc/
 DIR_DISPLAY = $(SOURCEDIR)display/
+DIR_GEOMETRY = $(SOURCEDIR)geometry/
 # DIR_PARSING = $(SOURCEDIR)parsing/
 # DIR_RENDER = $(SOURCEDIR)render/
 # DIR_UTILS = $(SOURCEDIR)utils/
@@ -10,10 +11,12 @@ FILES_ALLOC = exit.c			\
 			display.c			\
 			ram.c				\
 
-FILES_DISPLAY = callbacks.c		\
-				init.c			\
-				loop.c			\
-				# glad.c			\
+FILES_DISPLAY = loop.c				\
+				init_context.c		\
+				init_shaders.c		\
+				init_buffers.c		\
+				init_callbacks.c	\
+				init_program.c		\
 
 # FILES_PARSING = \
 # 			parsing.c \
@@ -30,8 +33,8 @@ FILES_DISPLAY = callbacks.c		\
 # 			render.c \
 # 			shading.c \
 
-# FILES_UTILS = \
-# 			color.c \
+FILES_GEOMETRY =	matrix.c				\
+					projection_matrices.c	\
 # 			geometry.c \
 # 			geometry2.c \
 # 			math.c \
@@ -40,6 +43,7 @@ FILES_DISPLAY = callbacks.c		\
 SRC =		$(MAIN_FILE)									\
 			$(addprefix $(DIR_ALLOC), $(FILES_ALLOC))		\
 			$(addprefix $(DIR_DISPLAY), $(FILES_DISPLAY))	\
+			$(addprefix $(DIR_GEOMETRY), $(FILES_GEOMETRY))		\
+			# $(addprefix $(DIR_UTILS), $(FILES_UTILS))		\
 			# $(addprefix $(DIR_PARSING), $(FILES_PARSING)) \
 			# $(addprefix $(DIR_RENDER), $(FILES_RENDER)) \
-			# $(addprefix $(DIR_UTILS), $(FILES_UTILS))
