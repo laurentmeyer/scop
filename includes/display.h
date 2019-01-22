@@ -7,7 +7,7 @@
 typedef struct		s_display
 {
 	GLFWwindow *window;
-	GLfloat vertices[9];
+	GLfloat vertexData[18];
 	int	width;
 	int	height;
 	float	znear;

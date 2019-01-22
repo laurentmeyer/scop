@@ -15,11 +15,11 @@ void	key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 void	error_callback(int error, const char* description);
 void	loop(t_ram *ram);
 void 	init_program(t_ram *ram);
-void 	link_program(t_ram *ram);
-void	init_buffers(t_ram *ram);
+void	init_vertices(t_ram *ram);
 void 	init_shaders(t_ram *ram);
 void	init_window(t_ram *ram);
 void 	init_context(t_ram *ram);
 void	init_callbacks(t_ram *ram);
+char	*parse_shader(t_ram *ram, char const *path);
 
 #endif

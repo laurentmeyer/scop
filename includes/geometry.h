@@ -10,8 +10,10 @@ typedef struct		s_v4
 	float			z;
 	float			w;
 }					t_v4;
+
 typedef	t_v4		t_col;
 typedef	t_col		t_m4[4];
+
 
 void				mul_m_v(t_m4 *m, t_v4 *out, t_v4 *in);
 void				mul_m_m(t_m4 *out, t_m4 *a, t_m4 *b);

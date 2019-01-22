@@ -7,7 +7,7 @@ void init_display(t_ram *ram)
 	init_window(ram);
 	init_context(ram);
 	init_program(ram);
-	init_buffers(ram);
+	init_vertices(ram);
 	init_callbacks(ram);
 	ram->display.zfar = 100.;
 	ram->display.znear = .1;

@@ -5,7 +5,7 @@ void init_program(t_ram *ram)
 {
 	ram->display.program = glCreateProgram();
 	if (0 == ram->display.program)
-		exit_message(ram, EXIT_FAILURE, "Could not init proram");
+		exit_message(ram, EXIT_FAILURE, "Could not init program");
 	init_shaders(ram);
 	glAttachShader(ram->display.program, ram->display.vertex_shader);
 	glAttachShader(ram->display.program, ram->display.fragment_shader);
