@@ -5,6 +5,8 @@
 # include <math.h>
 # include "ram.h"
 # include "display.h"
+# include "parser.h"
+# include "geometry.h"
 
 # define WIN_H		480
 # define WIN_W		640
@@ -21,5 +23,8 @@ void	init_window(t_ram *ram);
 void 	init_context(t_ram *ram);
 void	init_callbacks(t_ram *ram);
 char	*parse_shader(t_ram *ram, char const *path);
+void	count_elements(t_ram *ram);
+void	fill_elements(t_ram *ram);
+void	ortho(t_m4 *out, t_ram *ram); // a mettre dans le bon header
 
 #endif

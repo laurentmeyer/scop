@@ -6,21 +6,25 @@
 
 typedef struct		s_v3
 {
-	GLint			x;
-	GLint			y;
-	GLint			z;
+	GLfloat			x;
+	GLfloat			y;
+	GLfloat			z;
 }					t_v3;
 
-typedef struct		s_vertexData
+typedef struct		s_vertex
 {
 	t_v3			pos;
-	t_v3			color;
-}					t_vertexData;
+	// t_v3			color;
+}					t_vertex;
+
+typedef t_vertex	t_triangle[3];
 
 typedef struct		s_model
 {
-	t_vertexData	*vertices;
+	t_vertex		*vertices;
 	size_t			vertices_count;
+	t_triangle		*triangles;
+	size_t			triangles_count;
 }					t_model;
 
 

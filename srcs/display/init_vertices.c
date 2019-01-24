@@ -6,15 +6,16 @@
 
 void create_vertex_buffer_objects(t_ram *ram)
 {
-	GLfloat vertexData[] = {0.0f, 3.0f, -5.0f, 1.0f, 1.0f, 0.0f, -3.0f, -3.0f, -5.0f, 0.0f, 1.0f, 1.0f, 3.0f, -3.0f, -5.0f, 1.0f, 0.0f, 1.0f};
-	ram->model.vertices_count = sizeof(vertexData) / sizeof(t_vertexData);
-	ram->model.vertices = (t_vertexData *)malloc(ram->model.vertices_count * sizeof(t_vertexData));
-	if (NULL == ram->model.vertices)
-		exit_message(ram, EXIT_FAILURE, "Could not allocate vertex data");
-	memcpy(ram->model.vertices, vertexData, sizeof(vertexData));
+	// GLfloat vertexData[] = {0.0f, 3.0f, -5.0f, 1.0f, 1.0f, 0.0f, -3.0f, -3.0f, -5.0f, 0.0f, 1.0f, 1.0f, 3.0f, -3.0f, -5.0f, 1.0f, 0.0f, 1.0f};
+	// size_t i = 0;
+	// while (i < ram->model.triangles_count * sizeof(t_triangle) / sizeof(GLfloat))
+	// {
+	// 	printf("%f\n", ((GLfloat *)(ram->model.triangles))[i]);
+	// 	i++;
+	// }
 	glGenBuffers(1, &(ram->display.vbo));
 	glBindBuffer(GL_ARRAY_BUFFER, ram->display.vbo);
-	glBufferData(GL_ARRAY_BUFFER, ram->model.vertices_count * sizeof(t_vertexData), vertexData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, ram->model.triangles_count * sizeof(t_triangle), ram->model.triangles, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -24,9 +25,9 @@ void create_vertex_array_objects(t_ram *ram)
 	glBindVertexArray(ram->display.vao);
 	glBindBuffer(GL_ARRAY_BUFFER, ram->display.vbo);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(t_vertexData), 0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(t_vertexData), (const GLvoid *)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(t_vertex), 0);
+	// glEnableVertexAttribArray(1);
+	// glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(t_vertex), (const GLvoid *)(3 * sizeof(GLfloat)));
 	glBindVertexArray(0);
 }
 

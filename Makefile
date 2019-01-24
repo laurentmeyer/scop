@@ -19,19 +19,19 @@ SRCFILES = ""
 include files.mk
 
 
-# LIBFT = 		./libft/
+LIBFT = 		./libft/
 GLFW = 		./libs/GLFW
 GLEW = 		./libs/GLEW
 
 CCHEADERS = -I./$(HEADERDIR) \
 			-I$(GLFW)/include/ \
 			-I$(GLEW)/include/ \
-			# -I$(LIBFT)/libft/includes \
+			-I$(LIBFT)/libft/includes \
 			# -I$(LIBFT)/ft_printf/includes \
 
 CCLIBS =	-L$(GLFW)/lib -lglfw		\
 			-L$(GLEW)/lib -lGLEW		\
-		# -L$(LIBFT) -lft \
+		-L$(LIBFT) -lft \
 
 CCFRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 
@@ -41,7 +41,7 @@ OBJ = $(SRC:%.c=%.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	# make -C $(LIBFT)
+	make -C $(LIBFT)
 	@$(CC) $(CCHEADERS) $(CCLIBS) $(OBJ) $(CCFRAMEWORKS) -o $(NAME)
 
 %.o : %.c
@@ -50,12 +50,12 @@ $(NAME) : $(OBJ)
 
 .PHONY: clean
 clean:
-	# $(MAKE) -C $(LIBFT) clean
+	$(MAKE) -C $(LIBFT) clean
 	rm -f $(OBJ)
 
 .PHONY: fclean
 fclean: clean
-	# $(MAKE) -C $(LIBFT) fclean
+	$(MAKE) -C $(LIBFT) fclean
 	rm -f $(NAME)
 
 .PHONY: re

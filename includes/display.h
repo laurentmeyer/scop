@@ -3,6 +3,7 @@
 
 # include <GL/glew.h>
 # include <GLFW/glfw3.h>
+# include "geometry.h"
 
 typedef struct		s_display
 {
@@ -18,7 +19,12 @@ typedef struct		s_display
 	GLuint program;
 	GLuint vbo;
 	GLuint vao;
-	GLint pMatID;
+	GLint proj_matrix_id;
+	GLint viewMatID;
+	GLint modelMatID;
+	t_m4	proj_matrix;
+	t_m4	view_matrix;
+	t_m4	model_matrix;
 } 					t_display;
 
 #endif

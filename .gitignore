@@ -52,4 +52,5 @@ Mkfile.old
 dkms.conf
 
 # custom
-rtv1
+scop
+.DS_Store
