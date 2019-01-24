@@ -2,6 +2,14 @@
 #include <libc.h>
 #include <math.h>
 
+void				cpy_m4(t_m4 *out, t_m4 *in)
+{
+	(*out)[0] = (*in)[0];
+	(*out)[1] = (*in)[1];
+	(*out)[2] = (*in)[2];
+	(*out)[3] = (*in)[3];
+}
+
 void				mul_m_v(t_m4 *m, t_v4 *out, t_v4 *in)
 {
 	out->x = (*m)[0].x * in->x + (*m)[1].x * in->x
@@ -16,10 +24,10 @@ void				mul_m_v(t_m4 *m, t_v4 *out, t_v4 *in)
 
 void				mul_m_m(t_m4 *out, t_m4 *a, t_m4 *b)
 {
-	mul_m_v(a, out[0], b[0]);
-	mul_m_v(a, out[1], b[1]);
-	mul_m_v(a, out[2], b[2]);
-	mul_m_v(a, out[3], b[3]);
+	mul_m_v(a, &((*out)[0]), &((*b)[0]));
+	mul_m_v(a, &((*out)[1]), &((*b)[1]));
+	mul_m_v(a, &((*out)[2]), &((*b)[2]));
+	mul_m_v(a, &((*out)[3]), &((*b)[3]));
 }
 
 void				identity_m4(t_m4 *out)
