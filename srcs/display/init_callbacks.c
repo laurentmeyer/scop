@@ -5,8 +5,11 @@
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	(void)scancode;
-	(void)action;
 	(void)mods;
+	// if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+	// 	printf("%s\n", "up key pressed");
+	// if (key == GLFW_KEY_UP && action == GLFW_RELEASE)
+	// 	printf("%s\n", "up key released");
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
         glfwSetWindowShouldClose(window, GLFW_TRUE);

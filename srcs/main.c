@@ -20,7 +20,6 @@ int main(int ac, char **av)
 {
 	t_ram	ram;
 
-	test();
 	if (ac != 2)
 	{
 		fprintf(stderr, "usage: ./scop [obj file path]\n");

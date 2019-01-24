@@ -50,10 +50,10 @@ void init_program(t_ram *ram)
 	printf("shader program linking: %s\n", link_success ? "success" : "failure");
 	// check for linking errors ??
 	ram->display.proj_matrix_id = glGetUniformLocation(ram->display.program, "projMatrix");
-	ram->display.viewMatID = glGetUniformLocation(ram->display.program, "viewMatrix");
-	ram->display.modelMatID = glGetUniformLocation(ram->display.program, "modelMatrix");
+	ram->display.view_matrix_id = glGetUniformLocation(ram->display.program, "viewMatrix");
+	ram->display.model_matrix_id = glGetUniformLocation(ram->display.program, "modelMatrix");
 	if (-1 == ram->display.proj_matrix_id
-		|| -1 == ram->display.viewMatID
-		|| -1 == ram->display.modelMatID)
+		|| -1 == ram->display.view_matrix_id
+		|| -1 == ram->display.model_matrix_id)
 		exit_message(ram, EXIT_FAILURE, "Could not retrieve uniform Mat IDs");
 }

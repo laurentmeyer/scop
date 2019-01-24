@@ -14,6 +14,7 @@ void	fill_vertex(t_ram *ram)
 	v = ram->model.vertices + pos++;
 	s = sscanf(ram->parser.line, "v %f %f %f", &(v->pos.x), &(v->pos.y),
 			&(v->pos.z));
+	// printf("%f.3 %f.3 %f.3\n", v->pos.x, v->pos.y, v->pos.z);
 	if (3 != s)
 	{
 		fprintf(stderr, "Error parsing vertex: ");

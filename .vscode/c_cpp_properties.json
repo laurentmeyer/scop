@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/includes",
                 "${workspaceFolder}/libs/GLFW/include/**",
-                "${workspaceFolder}/libs/GLEW/include/**"
+                "${workspaceFolder}/libs/GLEW/include/**",
+                "${workspaceFolder}/libft/libft/includes"
             ],
             "defines": [],
             "macFrameworkPath": [
