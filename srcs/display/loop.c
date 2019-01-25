@@ -7,47 +7,55 @@
 
 void	update_camera(t_ram *ram)
 {
-	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_UP))
-	{
-		ram->display.camera_position.z -= 1.0;
-		// printf("==proj==\n");
-		// print_matrix(&ram->display.proj_matrix);
-		// printf("==view==\n");
-		// print_matrix(&ram->display.view_matrix);
-		// printf("==model==\n");
-		// print_matrix(&ram->display.model_matrix);
-	}
+	t_v4	tmp;
+	t_v4	direction;
+
+	direction = (t_v4){0., 0., -1., 1.};
+	rotate_v(&direction, &ram->display.camera_rotation);
 	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_DOWN))
 	{
-		ram->display.camera_position.z += 1.0;
-		// printf("==proj==\n");
-		// print_matrix(&ram->display.proj_matrix);
-		// printf("==view==\n");
-		// print_matrix(&ram->display.view_matrix);
-		// printf("==model==\n");
-		// print_matrix(&ram->display.model_matrix);
+		inverse_v4(&tmp, &direction);
+        translate_v(&ram->display.camera_position, &tmp);
 	}
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_UP))
+          translate_v(&ram->display.camera_position, &direction);
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_LEFT))
+	{
+		rotate_v(&direction, &(t_v4){0., radians(90), 0., 0.});
+		mul_v_f(&direction, 0.2);
+		direction.y = 0;
+        translate_v(&ram->display.camera_position, &direction);
+	}
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_RIGHT))
+	{
+		rotate_v(&direction, &(t_v4){0., radians(-90), 0., 0.});
+		mul_v_f(&direction, 0.2);
+		direction.y = 0;
+        translate_v(&ram->display.camera_position, &direction);
+	}
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_S))
+		ram->display.camera_rotation.x += radians(1);
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_W))
+		ram->display.camera_rotation.x -= radians(1);
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_A))
+		ram->display.camera_rotation.y += radians(1);
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_D))
+		ram->display.camera_rotation.y -= radians(1);
 }
 
 void	update_matrices(t_ram *ram)
 {
-	static size_t i = 0;
-
-	// identity_m4(&ram->display.proj_matrix);
-	ortho(&ram->display.proj_matrix, ram);
-	glUniformMatrix4fv(ram->display.proj_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.proj_matrix);
+	t_v4	tmp;
 
 	identity_m4(&ram->display.view_matrix);
-	// translate(&ram->display.view_matrix, &(t_v4){0.0, 0.0, -100.0, 1.0});
-	translate(&ram->display.view_matrix, &ram->display.camera_position);
-	// rotate(&ram->display.view_matrix, &ram->display.camera_direction);
+	inverse_v4(&tmp, &ram->display.camera_rotation);
+    rotate_m(&ram->display.view_matrix, &tmp);
+	inverse_v4(&tmp, &ram->display.camera_position);
+    translate_m(&ram->display.view_matrix, &tmp);
 	glUniformMatrix4fv(ram->display.view_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.view_matrix);
 
-	identity_m4(&ram->display.model_matrix);
-	rotate(&ram->display.model_matrix, &(t_v4){radians(0), radians(i * 0.5), radians(0), 1.0});
+	rotate_m(&ram->display.model_matrix, &(t_v4){radians(0), radians(0.5), radians(0), 1.0});
 	glUniformMatrix4fv(ram->display.model_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.model_matrix);
-
-	i++;
 }
 
 void	loop(t_ram *ram)

@@ -97,3 +97,8 @@ void				print_matrix(t_m4 *m)
 	((*m)[0]).z, ((*m)[1]).z, ((*m)[2]).z, ((*m)[3]).z, 
 	((*m)[0]).w, ((*m)[1]).w, ((*m)[2]).w, ((*m)[3]).w);
 }
+
+void				print_vector(t_v4 *v)
+{
+	printf("%2.4f %2.4f %2.4f %2.4f\n", v->x, v->y, v->z, v->w);
+}

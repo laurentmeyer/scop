@@ -8,10 +8,10 @@ void	test(void) //
 	t_m4	m2;
 
 	identity_m4(&m1);
-	rotate(&m1, &(t_v4){radians(0), radians(0), radians(1), 1.0});
-	rotate(&m1, &(t_v4){radians(0), radians(0), radians(1), 1.0});
+	rotate_m(&m1, &(t_v4){radians(0), radians(0), radians(1), 1.0});
+	rotate_m(&m1, &(t_v4){radians(0), radians(0), radians(1), 1.0});
 	identity_m4(&m2);
-	rotate(&m2, &(t_v4){radians(0), radians(0), radians(2), 1.0});
+	rotate_m(&m2, &(t_v4){radians(0), radians(0), radians(2), 1.0});
 	return ;
 }
 

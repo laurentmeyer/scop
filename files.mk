@@ -36,6 +36,7 @@ FILES_UTILS =	parsing.c			\
 # 			shading.c \
 
 FILES_GEOMETRY =	matrix.c				\
+					vector.c				\
 					projection_matrices.c	\
 					movement_matrices.c		\
 # 			geometry.c \

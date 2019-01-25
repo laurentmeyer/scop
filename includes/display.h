@@ -31,7 +31,7 @@ typedef struct		s_display
 	t_m4	view_matrix;
 	t_m4	model_matrix;
 	t_v4	camera_position;
-	t_v4	camera_direction;
+	t_v4	camera_rotation;
 } 					t_display;
 
 #endif

@@ -8,8 +8,8 @@
 # include "parser.h"
 # include "geometry.h"
 
-# define WIN_H		480
-# define WIN_W		640
+# define WIN_H		768
+# define WIN_W		1024
 # define WIN_NAME	"scop"
 
 
