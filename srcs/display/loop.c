@@ -58,7 +58,9 @@ void	update_matrices(t_ram *ram)
     translate_m(&ram->display.view_matrix, &tmp);
 	glUniformMatrix4fv(ram->display.view_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.view_matrix);
 
-	rotate_m(&ram->display.model_matrix, &(t_v4){radians(0), radians(0.5), radians(0), 1.0});
+	identity_m4(&ram->display.model_matrix);
+	static size_t i = 0;
+	rotate_m(&ram->display.model_matrix, &(t_v4){radians(0), radians(i++ * 0.5), radians(0), 1.0});
 	glUniformMatrix4fv(ram->display.model_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.model_matrix);
 }
 

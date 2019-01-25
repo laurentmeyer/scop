@@ -16,15 +16,7 @@ void init_display(t_ram *ram)
 	ram->display.camera_position = (t_v4){0., 0., 0., 1.};
 	ram->display.camera_rotation = (t_v4){0., 0., 0., 0.};
 	glfwGetFramebufferSize(ram->display.window, &(ram->display.width), &(ram->display.height));
-
-	glUseProgram(ram->display.program);
-	ortho(&ram->display.proj_matrix, ram);
-	glUniformMatrix4fv(ram->display.proj_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.proj_matrix);
-	identity_m4(&ram->display.view_matrix);
-	glUniformMatrix4fv(ram->display.view_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.view_matrix);
-	identity_m4(&ram->display.model_matrix);
-	glUniformMatrix4fv(ram->display.model_matrix_id, 1, GL_FALSE, (GLfloat *)ram->display.model_matrix);
-	glUseProgram(0);
+	init_matrices(ram);
 }
 
 void destroy_display(t_display *display)

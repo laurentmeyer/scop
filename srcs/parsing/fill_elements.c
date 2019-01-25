@@ -86,7 +86,7 @@ void	fill_uv(t_ram *ram)
 		min = (t_v2){minf((*t)[0].pos.x, (*t)[1].pos.x), minf((*t)[0].pos.y, (*t)[1].pos.y)};
 		min = (t_v2){minf(min.x, (*t)[2].pos.x), minf(min.y, (*t)[2].pos.y)};
 		max = (t_v2){maxf((*t)[0].pos.x, (*t)[1].pos.x), maxf((*t)[0].pos.y, (*t)[1].pos.y)};
-		max = (t_v2){maxf(min.x, (*t)[2].pos.x), maxf(min.y, (*t)[2].pos.y)};
+		max = (t_v2){maxf(max.x, (*t)[2].pos.x), maxf(max.y, (*t)[2].pos.y)};
 		(*t)[0].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[0].pos.x), percentage_f(min.y, max.y, (*t)[0].pos.y)};
 		(*t)[1].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[1].pos.x), percentage_f(min.y, max.y, (*t)[1].pos.y)};
 		(*t)[2].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[2].pos.x), percentage_f(min.y, max.y, (*t)[2].pos.y)};

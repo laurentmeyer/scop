@@ -22,6 +22,7 @@ void 	init_shaders(t_ram *ram);
 void	init_window(t_ram *ram);
 void 	init_context(t_ram *ram);
 void	init_callbacks(t_ram *ram);
+void	init_matrices(t_ram *ram);
 void 	init_texture(t_ram *ram, const char *path);
 char	*parse_shader(t_ram *ram, char const *path);
 unsigned char	*parse_bmp(t_ram *ram, const char *imagepath);

@@ -18,6 +18,7 @@ FILES_DISPLAY = loop.c						\
 				init_vertices.c				\
 				init_callbacks.c			\
 				init_texture.c				\
+				init_matrices.c				\
 				init_shader_program.c		\
 
 FILES_PARSING = shader.c			\
