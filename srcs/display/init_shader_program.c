@@ -10,8 +10,7 @@ void create_vertex_shaders(t_ram *ram)
 	char	*program;
 	int		success;
 
-	program = parse_shader(ram, "./shaders/vertex/movement.glsl");
-	// program = parse_shader(ram, "./shaders/vertex/basic.glsl");
+	program = parse_shader(ram, "./shaders/vertex/grey.glsl");
 	ram->display.vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(ram->display.vertex_shader, 1, (const GLchar *const *)(&program), NULL);
 	glCompileShader(ram->display.vertex_shader);
@@ -25,7 +24,7 @@ void create_fragment_shaders(t_ram *ram)
 	char	*program;
 	int success;
 
-	program = parse_shader(ram, "./shaders/fragment/basic.glsl");
+	program = parse_shader(ram, "./shaders/fragment/grey.glsl");
 	ram->display.fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(ram->display.fragment_shader, 1, (const GLchar *const *)(&program), NULL);
 	glCompileShader(ram->display.fragment_shader);

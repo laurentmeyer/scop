@@ -9,6 +9,8 @@ void init_display(t_ram *ram)
 	init_program(ram);
 	init_vertices(ram);
 	init_callbacks(ram);
+	// init_texture(ram, "./textures/yellow.bmp");
+	init_texture(ram, "./textures/nadine.bmp");
 	ram->display.zfar = 100.;
 	ram->display.znear = .1;
 	ram->display.camera_position = (t_v4){0., 0., 0., 1.};

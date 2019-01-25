@@ -1,4 +1,5 @@
 #include <libc.h>
+#include <math.h>
 #include "ram.h"
 #include "model.h"
 #include "alloc.h"
@@ -71,6 +72,27 @@ void	fill_face(t_ram *ram)
 
 }
 
+void	fill_uv(t_ram *ram)
+{
+	size_t		i;
+	t_triangle	*t;
+	t_v2		min;
+	t_v2		max;
+
+	i = 0;
+	while (i < ram->model.triangles_count)
+	{
+		t = ram->model.triangles + i++;
+		min = (t_v2){minf((*t)[0].pos.x, (*t)[1].pos.x), minf((*t)[0].pos.y, (*t)[1].pos.y)};
+		min = (t_v2){minf(min.x, (*t)[2].pos.x), minf(min.y, (*t)[2].pos.y)};
+		max = (t_v2){maxf((*t)[0].pos.x, (*t)[1].pos.x), maxf((*t)[0].pos.y, (*t)[1].pos.y)};
+		max = (t_v2){maxf(min.x, (*t)[2].pos.x), maxf(min.y, (*t)[2].pos.y)};
+		(*t)[0].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[0].pos.x), percentage_f(min.y, max.y, (*t)[0].pos.y)};
+		(*t)[1].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[1].pos.x), percentage_f(min.y, max.y, (*t)[1].pos.y)};
+		(*t)[2].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[2].pos.x), percentage_f(min.y, max.y, (*t)[2].pos.y)};
+	}
+}
+
 void fill_elements(t_ram *ram)
 {
 	int f;
@@ -96,4 +118,5 @@ void fill_elements(t_ram *ram)
 	free(ram->parser.line);
 	ram->parser.line = NULL;
 	close(f);
+	fill_uv(ram);
 }

@@ -33,6 +33,10 @@ void	update_camera(t_ram *ram)
 		direction.y = 0;
         translate_v(&ram->display.camera_position, &direction);
 	}
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_E))
+		ram->display.camera_position.y += 0.5;
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_Q))
+		ram->display.camera_position.y -= 0.5;
 	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_S))
 		ram->display.camera_rotation.x += radians(1);
 	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_W))
@@ -63,11 +67,14 @@ void	loop(t_ram *ram)
 	t_display *d;
 
 	d = &(ram->display);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	glUseProgram(d->program);
+
 	update_camera(ram);
 	update_matrices(ram);
+
 	glBindVertexArray(d->vao);
 	glDrawArrays(GL_TRIANGLES, 0, ram->model.triangles_count * sizeof(t_triangle));
 	glBindVertexArray(0);

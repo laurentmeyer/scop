@@ -17,11 +17,13 @@ FILES_DISPLAY = loop.c						\
 				init_context.c				\
 				init_vertices.c				\
 				init_callbacks.c			\
+				init_texture.c				\
 				init_shader_program.c		\
 
 FILES_PARSING = shader.c			\
 				count_elements.c	\
-				fill_elements.c	\
+				fill_elements.c		\
+				bmp.c				\
 # 			parse_object.c \
 # 			parse_light.c \
 # 			parse_camera.c \

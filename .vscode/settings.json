@@ -5,6 +5,8 @@
 		"display.h": "c",
 		"parser.h": "c",
 		"alloc.h": "c",
-		"geometry.h": "c"
+		"geometry.h": "c",
+		"ram.h": "c",
+		"math.h": "c"
 	}
 }

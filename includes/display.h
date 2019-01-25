@@ -24,6 +24,7 @@ typedef struct		s_display
 	GLuint program;
 	GLuint vbo;
 	GLuint vao;
+	GLuint texture_id;
 	GLint proj_matrix_id;
 	GLint view_matrix_id;
 	GLint model_matrix_id;
