@@ -15,7 +15,7 @@
 #include "parser.h"
 #include "alloc.h"
 
-unsigned char	*parse_bmp(t_ram *ram, const char *imagepath)
+unsigned char	*parse_bmp(t_ram *ram, char *imagepath)
 {
 	FILE			*f;
 	unsigned char	*data;

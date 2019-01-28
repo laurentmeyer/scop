@@ -15,7 +15,7 @@
 #include "scop.h"
 #include <libc.h>
 
-void	init_texture(t_ram *ram, const char *path)
+void	init_texture(t_ram *ram, char *path)
 {
 	unsigned char	*texture;
 

@@ -18,12 +18,12 @@ int		main(int ac, char **av)
 {
 	t_ram	ram;
 
-	if (ac != 2)
+	if (ac != 3)
 	{
-		fprintf(stderr, "usage: ./scop [obj file path]\n");
+		fprintf(stderr, "usage: ./scop [obj file path] [tex file path]\n");
 		return (EXIT_SUCCESS);
 	}
-	init_ram(&ram, av[1]);
+	init_ram(&ram, av[1], av[2]);
 	while (!glfwWindowShouldClose(ram.display.window))
 		loop(&ram);
 	destroy_ram(&ram);

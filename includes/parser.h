@@ -18,6 +18,7 @@
 typedef struct		s_parser
 {
 	char			*obj_path;
+	char			*tex_path;
 	char			*line;
 	char			**split;
 	int				*ints;
