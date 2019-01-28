@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_vertices.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmeyer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/28 16:03:22 by lmeyer            #+#    #+#             */
+/*   Updated: 2019/01/28 16:04:02 by lmeyer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libc.h>
 #include <math.h>
 #include "ram.h"
@@ -16,7 +28,6 @@ void	fill_vertex(t_ram *ram)
 	v = ram->model.vertices + pos++;
 	s = sscanf(ram->parser.line, "v %f %f %f", &(v->pos.x), &(v->pos.y),
 			&(v->pos.z));
-	// printf("%f.3 %f.3 %f.3\n", v->pos.x, v->pos.y, v->pos.z);
 	if (3 != s)
 	{
 		fprintf(stderr, "Error parsing vertex: ");
@@ -37,10 +48,13 @@ void	center_object(t_ram *ram)
 	while (i < ram->model.vertices_count)
 	{
 		cur = ram->model.vertices[i++].pos;
-		min = (t_v3){minf(min.x, cur.x), minf(min.y, cur.y), minf(min.z, cur.z)};
-		max = (t_v3){maxf(max.x, cur.x), maxf(max.y, cur.y), maxf(max.z, cur.z)};
+		min = (t_v3){minf(min.x, cur.x),
+			minf(min.y, cur.y), minf(min.z, cur.z)};
+		max = (t_v3){maxf(max.x, cur.x),
+			maxf(max.y, cur.y), maxf(max.z, cur.z)};
 	}
-	cur = (t_v3){(max.x + min.x) / 2., (max.y + min.y) / 2., (max.z + min.z) / 2.};
+	cur = (t_v3){(max.x + min.x) / 2., (max.y + min.y) / 2.,
+		(max.z + min.z) / 2.};
 	i = 0;
 	while (i < ram->model.vertices_count)
 	{
@@ -50,10 +64,10 @@ void	center_object(t_ram *ram)
 	}
 }
 
-void fill_vertices(t_ram *ram)
+void	fill_vertices(t_ram *ram)
 {
-	int f;
-	int read;
+	int		f;
+	int		read;
 
 	if (-1 == (f = open(ram->parser.obj_path, O_RDONLY)))
 		exit_message(ram, EXIT_FAILURE, "Invalid shader program path");
@@ -62,7 +76,7 @@ void fill_vertices(t_ram *ram)
 		if (-1 == read)
 			exit_message(ram, EXIT_FAILURE, "Error reading obj file");
 		if (ft_countwords(ram->parser.line, ' ') == 4
-			&& first_word_is(ram->parser.line, "v"))
+				&& first_word_is(ram->parser.line, "v"))
 			fill_vertex(ram);
 		free(ram->parser.line);
 		ram->parser.line = NULL;

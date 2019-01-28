@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count_elements.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmeyer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/28 16:01:02 by lmeyer            #+#    #+#             */
+/*   Updated: 2019/01/28 16:01:25 by lmeyer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libc.h>
 #include "ram.h"
 #include "model.h"
@@ -15,7 +27,6 @@ void	count_elements(t_ram *ram)
 
 	if (NULL == (f = fopen(ram->parser.obj_path, "rb")))
 		exit_message(ram, EXIT_FAILURE, "Invalid obj file path");
-	// fseek(f, 0, SEEK_END);
 	len = 0;
 	line = NULL;
 	while (-1 != (read = getline(&line, &len, f)))

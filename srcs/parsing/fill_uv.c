@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_uv.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmeyer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/28 16:02:36 by lmeyer            #+#    #+#             */
+/*   Updated: 2019/01/28 16:03:15 by lmeyer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libc.h>
 #include <math.h>
 #include "ram.h"
@@ -6,12 +18,12 @@
 #include "utils.h"
 #include "libft.h"
 
-void fill_uv_sphere(t_triangle *t)
+void	fill_uv_sphere(t_triangle *t)
 {
-	size_t j;
-	t_v3 p;
-	float norm;
-	t_v2 *uv;
+	size_t	j;
+	t_v3	p;
+	float	norm;
+	t_v2	*uv;
 
 	j = 0;
 	while (j < 3)
@@ -26,9 +38,9 @@ void fill_uv_sphere(t_triangle *t)
 	}
 }
 
-void normalize_uv_sphere(t_triangle *t)
+void	normalize_uv_sphere(t_triangle *t)
 {
-	float u[3];
+	float	u[3];
 
 	u[0] = (*t)[0].tcoord_sph.x;
 	u[1] = (*t)[1].tcoord_sph.x;
@@ -47,33 +59,33 @@ void normalize_uv_sphere(t_triangle *t)
 		(*t)[2].tcoord_sph.x = 0.0;
 }
 
-void fill_uv_triangle(t_triangle *t)
+void	fill_uv_triangle(t_triangle *t)
 {
-	t_v2 min;
-	t_v2 max;
+	t_v2	min;
+	t_v2	max;
 
 	min = (t_v2){minf((*t)[0].pos.x, (*t)[1].pos.x),
-				 minf((*t)[0].pos.y, (*t)[1].pos.y)};
+		minf((*t)[0].pos.y, (*t)[1].pos.y)};
 	min = (t_v2){minf(min.x, (*t)[2].pos.x),
-				 minf(min.y, (*t)[2].pos.y)};
+		minf(min.y, (*t)[2].pos.y)};
 	max = (t_v2){maxf((*t)[0].pos.x, (*t)[1].pos.x),
-				 maxf((*t)[0].pos.y, (*t)[1].pos.y)};
+		maxf((*t)[0].pos.y, (*t)[1].pos.y)};
 	max = (t_v2){maxf(max.x, (*t)[2].pos.x),
-				 maxf(max.y, (*t)[2].pos.y)};
+		maxf(max.y, (*t)[2].pos.y)};
 	(*t)[0].tcoord_tri = (t_v2){percentage_f(min.x, max.x,
-											 (*t)[0].pos.x),
-								percentage_f(min.y, max.y, (*t)[0].pos.y)};
+			(*t)[0].pos.x),
+		percentage_f(min.y, max.y, (*t)[0].pos.y)};
 	(*t)[1].tcoord_tri = (t_v2){percentage_f(min.x, max.x,
-											 (*t)[1].pos.x),
-								percentage_f(min.y, max.y, (*t)[1].pos.y)};
+			(*t)[1].pos.x),
+		percentage_f(min.y, max.y, (*t)[1].pos.y)};
 	(*t)[2].tcoord_tri = (t_v2){percentage_f(min.x, max.x,
-											 (*t)[2].pos.x),
-								percentage_f(min.y, max.y, (*t)[2].pos.y)};
+			(*t)[2].pos.x),
+		percentage_f(min.y, max.y, (*t)[2].pos.y)};
 }
 
-void fill_uvs(t_ram *ram)
+void	fill_uvs(t_ram *ram)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < ram->model.triangles_count)

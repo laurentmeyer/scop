@@ -1,29 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_callbacks.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmeyer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/28 15:26:29 by lmeyer            #+#    #+#             */
+/*   Updated: 2019/01/28 15:47:40 by lmeyer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "display.h"
 #include "ram.h"
 #include <libc.h>
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void	error_callback(int error, const char *description)
 {
-	(void)scancode;
-	(void)mods;
-	// if (key == GLFW_KEY_UP && action == GLFW_PRESS)
-	// 	printf("%s\n", "up key pressed");
-	// if (key == GLFW_KEY_UP && action == GLFW_RELEASE)
-	// 	printf("%s\n", "up key released");
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-	{
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-	}
-}
-
-void error_callback(int error, const char* description)
-{
-    fprintf(stderr, "Error: %s code %d\n", description, error);
+	fprintf(stderr, "Error: %s code %d\n", description, error);
 }
 
 void	init_callbacks(t_ram *ram)
 {
-	// set resize callback
+	(void)ram;
 	glfwSetErrorCallback(error_callback);
-	glfwSetKeyCallback(ram->display.window, key_callback);
 }

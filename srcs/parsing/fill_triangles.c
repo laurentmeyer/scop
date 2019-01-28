@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_triangles.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmeyer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/28 16:01:56 by lmeyer            #+#    #+#             */
+/*   Updated: 2019/01/28 16:05:41 by lmeyer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libc.h>
 #include <math.h>
 #include "ram.h"
@@ -12,7 +24,7 @@ void	extract_int_params(t_ram *ram)
 
 	i = ft_countwords(ram->parser.line, ' ') - 1;
 	if (NULL == (ram->parser.ints = (int *)malloc(sizeof(int) * i))
-		|| NULL == (ram->parser.split = ft_strsplit(ram->parser.line, ' ')))
+			|| NULL == (ram->parser.split = ft_strsplit(ram->parser.line, ' ')))
 		exit_message(ram, EXIT_FAILURE, "Memalloc failed to read ints");
 	ram->parser.ints_count = i;
 	i = 0;
@@ -39,10 +51,10 @@ void	fill_face(t_ram *ram)
 	i = ram->parser.ints_count;
 	while (i-- > 0)
 		if (ram->parser.ints[i] < 1
-			|| (size_t)ram->parser.ints[i] > ram->model.vertices_count)
+				|| (size_t)ram->parser.ints[i] > ram->model.vertices_count)
 			exit_message(ram, EXIT_FAILURE, "Out of bound vertex");
 	i = 2;
-	while (i <  ram->parser.ints_count)
+	while (i < ram->parser.ints_count)
 	{
 		t = ram->model.triangles + pos++;
 		(*t)[0] = *(ram->model.vertices + ram->parser.ints[0] - 1);
@@ -54,7 +66,7 @@ void	fill_face(t_ram *ram)
 	ram->parser.ints = NULL;
 }
 
-void fill_triangles(t_ram *ram)
+void	fill_triangles(t_ram *ram)
 {
 	int f;
 	int read;
@@ -66,7 +78,7 @@ void fill_triangles(t_ram *ram)
 		if (-1 == read)
 			exit_message(ram, EXIT_FAILURE, "Error reading obj file");
 		if (ft_countwords(ram->parser.line, ' ') >= 4
-			&& first_word_is(ram->parser.line, "f"))
+				&& first_word_is(ram->parser.line, "f"))
 			fill_face(ram);
 		free(ram->parser.line);
 		ram->parser.line = NULL;

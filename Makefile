@@ -27,7 +27,6 @@ CCHEADERS = -I./$(HEADERDIR) \
 			-I$(GLFW)/include/ \
 			-I$(GLEW)/include/ \
 			-I$(LIBFT)/libft/includes \
-			# -I$(LIBFT)/ft_printf/includes \
 
 CCLIBS =	-L$(GLFW)/lib -lglfw		\
 			-L$(GLEW)/lib -lGLEW		\
