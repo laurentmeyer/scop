@@ -29,6 +29,7 @@ typedef struct		s_display
 	GLint view_matrix_id;
 	GLint model_matrix_id;
 	GLint tex_slider_id;
+	GLint uv_slider_id;
 	t_m4	proj_matrix;
 	t_m4	view_matrix;
 	t_m4	model_matrix;

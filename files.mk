@@ -23,7 +23,9 @@ FILES_DISPLAY = loop.c						\
 
 FILES_PARSING = shader.c			\
 				count_elements.c	\
-				fill_elements.c		\
+				fill_vertices.c		\
+				fill_triangles.c	\
+				fill_uv.c			\
 				bmp.c				\
 # 			parse_object.c \
 # 			parse_light.c \

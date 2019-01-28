@@ -52,9 +52,11 @@ void init_program(t_ram *ram)
 	ram->display.view_matrix_id = glGetUniformLocation(ram->display.program, "viewMatrix");
 	ram->display.model_matrix_id = glGetUniformLocation(ram->display.program, "modelMatrix");
 	ram->display.tex_slider_id = glGetUniformLocation(ram->display.program, "textureSlider");
+	ram->display.uv_slider_id = glGetUniformLocation(ram->display.program, "uvSlider");
 	if (-1 == ram->display.proj_matrix_id
 		|| -1 == ram->display.view_matrix_id
 		|| -1 == ram->display.model_matrix_id
-		|| -1 == ram->display.tex_slider_id)
+		|| -1 == ram->display.tex_slider_id
+		|| -1 == ram->display.uv_slider_id)
 		exit_message(ram, EXIT_FAILURE, "Could not retrieve uniform Mat IDs");
 }

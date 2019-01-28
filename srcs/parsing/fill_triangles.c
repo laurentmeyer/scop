@@ -6,23 +6,6 @@
 #include "utils.h"
 #include "libft.h"
 
-void	fill_vertex(t_ram *ram)
-{
-	static size_t	pos = 0;
-	t_vertex		*v;
-	int				s;
-
-	v = ram->model.vertices + pos++;
-	s = sscanf(ram->parser.line, "v %f %f %f", &(v->pos.x), &(v->pos.y),
-			&(v->pos.z));
-	// printf("%f.3 %f.3 %f.3\n", v->pos.x, v->pos.y, v->pos.z);
-	if (3 != s)
-	{
-		fprintf(stderr, "Error parsing vertex: ");
-		exit_message(ram, EXIT_FAILURE, ram->parser.line);
-	}
-}
-
 void	extract_int_params(t_ram *ram)
 {
 	size_t	i;
@@ -69,48 +52,21 @@ void	fill_face(t_ram *ram)
 	}
 	free(ram->parser.ints);
 	ram->parser.ints = NULL;
-
 }
 
-void	fill_uv(t_ram *ram)
-{
-	size_t		i;
-	t_triangle	*t;
-	t_v2		min;
-	t_v2		max;
-
-	i = 0;
-	while (i < ram->model.triangles_count)
-	{
-		t = ram->model.triangles + i++;
-		min = (t_v2){minf((*t)[0].pos.x, (*t)[1].pos.x), minf((*t)[0].pos.y, (*t)[1].pos.y)};
-		min = (t_v2){minf(min.x, (*t)[2].pos.x), minf(min.y, (*t)[2].pos.y)};
-		max = (t_v2){maxf((*t)[0].pos.x, (*t)[1].pos.x), maxf((*t)[0].pos.y, (*t)[1].pos.y)};
-		max = (t_v2){maxf(max.x, (*t)[2].pos.x), maxf(max.y, (*t)[2].pos.y)};
-		(*t)[0].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[0].pos.x), percentage_f(min.y, max.y, (*t)[0].pos.y)};
-		(*t)[1].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[1].pos.x), percentage_f(min.y, max.y, (*t)[1].pos.y)};
-		(*t)[2].tex_coord = (t_v2){percentage_f(min.x, max.x, (*t)[2].pos.x), percentage_f(min.y, max.y, (*t)[2].pos.y)};
-	}
-}
-
-void fill_elements(t_ram *ram)
+void fill_triangles(t_ram *ram)
 {
 	int f;
 	int read;
-	size_t w;
 
 	if (-1 == (f = open(ram->parser.obj_path, O_RDONLY)))
 		exit_message(ram, EXIT_FAILURE, "Invalid shader program path");
-	// fseek(f, 0, SEEK_END);
 	while (0 != (read = gnlite(f, &(ram->parser.line))))
 	{
 		if (-1 == read)
 			exit_message(ram, EXIT_FAILURE, "Error reading obj file");
-		if ((w = ft_countwords(ram->parser.line, ' ')) < 4)
-			;
-		else if (first_word_is(ram->parser.line, "v") && w == 4)
-			fill_vertex(ram);
-		else if (first_word_is(ram->parser.line, "f"))
+		if (ft_countwords(ram->parser.line, ' ') >= 4
+			&& first_word_is(ram->parser.line, "f"))
 			fill_face(ram);
 		free(ram->parser.line);
 		ram->parser.line = NULL;
@@ -118,5 +74,4 @@ void fill_elements(t_ram *ram)
 	free(ram->parser.line);
 	ram->parser.line = NULL;
 	close(f);
-	fill_uv(ram);
 }

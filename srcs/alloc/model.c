@@ -14,7 +14,10 @@ void init_model(t_ram *ram)
 	m->vertices = (t_vertex *)malloc(m->vertices_count * sizeof(t_vertex));
 	if (NULL == m->triangles || NULL == m->vertices)
 		exit_message(ram, EXIT_FAILURE, "Could not allocate model memory");
-	fill_elements(ram);
+	fill_vertices(ram);
+	center_object(ram);
+	fill_triangles(ram);
+	fill_uvs(ram);
 }
 
 void destroy_model(t_model *model)

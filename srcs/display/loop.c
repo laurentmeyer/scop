@@ -4,6 +4,22 @@
 #include "utils.h"
 #include "scop.h"
 
+void	update_uv_slider(t_ram *ram)
+{
+	static float	slider = 0.;
+	static int		going_up = 0;
+	const float		step = 0.03;
+
+	if (GLFW_PRESS == glfwGetKey(ram->display.window, GLFW_KEY_R)
+		&& (slider == 0. || slider == 1.))
+		going_up = !going_up;
+	if (going_up && slider < 1.)
+		slider = slider + step > 1.0 ? 1.0 : slider + step;
+	else if (!going_up && slider > 0.)
+		slider = slider - step < 0.0 ? 0.0 : slider - step;
+	glUniform1f(ram->display.uv_slider_id, slider);
+}
+
 void	update_texture_slider(t_ram *ram)
 {
 	static float	slider = 0.;
@@ -84,7 +100,6 @@ void	loop(t_ram *ram)
 	t_display *d;
 
 	d = &(ram->display);
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(d->program);
@@ -92,6 +107,7 @@ void	loop(t_ram *ram)
 	update_camera(ram);
 	update_matrices(ram);
 	update_texture_slider(ram);
+	update_uv_slider(ram);
 
 	glBindVertexArray(d->vao);
 	glDrawArrays(GL_TRIANGLES, 0, ram->model.triangles_count * sizeof(t_triangle));

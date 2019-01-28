@@ -20,8 +20,8 @@ typedef struct		s_v3
 typedef struct		s_vertex
 {
 	t_v3			pos;
-	// t_v3			color;
-	t_v2			tex_coord;
+	t_v2			tcoord_sph;
+	t_v2			tcoord_tri;
 }					t_vertex;
 
 typedef t_vertex	t_triangle[3];
