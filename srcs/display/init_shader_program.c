@@ -10,7 +10,7 @@ void create_vertex_shaders(t_ram *ram)
 	char	*program;
 	int		success;
 
-	program = parse_shader(ram, "./shaders/vertex/grey.glsl");
+	program = parse_shader(ram, "./shaders/vertex/coords.glsl");
 	ram->display.vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(ram->display.vertex_shader, 1, (const GLchar *const *)(&program), NULL);
 	glCompileShader(ram->display.vertex_shader);
@@ -24,7 +24,7 @@ void create_fragment_shaders(t_ram *ram)
 	char	*program;
 	int success;
 
-	program = parse_shader(ram, "./shaders/fragment/grey.glsl");
+	program = parse_shader(ram, "./shaders/fragment/transition.glsl");
 	ram->display.fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(ram->display.fragment_shader, 1, (const GLchar *const *)(&program), NULL);
 	glCompileShader(ram->display.fragment_shader);
@@ -51,8 +51,10 @@ void init_program(t_ram *ram)
 	ram->display.proj_matrix_id = glGetUniformLocation(ram->display.program, "projMatrix");
 	ram->display.view_matrix_id = glGetUniformLocation(ram->display.program, "viewMatrix");
 	ram->display.model_matrix_id = glGetUniformLocation(ram->display.program, "modelMatrix");
+	ram->display.tex_slider_id = glGetUniformLocation(ram->display.program, "textureSlider");
 	if (-1 == ram->display.proj_matrix_id
 		|| -1 == ram->display.view_matrix_id
-		|| -1 == ram->display.model_matrix_id)
+		|| -1 == ram->display.model_matrix_id
+		|| -1 == ram->display.tex_slider_id)
 		exit_message(ram, EXIT_FAILURE, "Could not retrieve uniform Mat IDs");
 }
